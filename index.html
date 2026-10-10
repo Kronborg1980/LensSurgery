@@ -673,7 +673,15 @@ toTop.addEventListener('click',function(){window.scrollTo({top:0})});
 /* start */
 (function(){var l=null;try{l=new URL(location.href).searchParams.get('lang')}catch(e){}
   if(!l||!I18N[l])l=store('eyeguide-lang');
-  if(!l||!I18N[l]){var prefs=navigator.languages||[navigator.language||'en'];for(var i=0;i<prefs.length&&!l;i++){var c=prefs[i].toLowerCase().split('-')[0];if(c==='no'||c==='nn')c='nb';if(I18N[c])l=c}}
+  if(!l||!I18N[l]){l=null;
+    /* 1: where the visitor is, judged by the device's time zone (no tracking, nothing is sent anywhere) */
+    var TZ={'Europe/Copenhagen':'da','Atlantic/Faroe':'da','America/Nuuk':'da','America/Godthab':'da','Europe/Berlin':'de','Europe/Busingen':'de','Europe/Vienna':'de','Europe/Zurich':'de','Europe/Vaduz':'de','Europe/Paris':'fr','Europe/Monaco':'fr','Europe/Madrid':'es','Atlantic/Canary':'es','Africa/Ceuta':'es','Europe/Rome':'it','Europe/San_Marino':'it','Europe/Vatican':'it','Europe/Lisbon':'pt','Atlantic/Madeira':'pt','Atlantic/Azores':'pt','Europe/Amsterdam':'nl','Europe/Warsaw':'pl','Europe/Stockholm':'sv','Europe/Oslo':'nb','Arctic/Longyearbyen':'nb'};
+    var zone='';try{zone=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+    if(TZ[zone]&&I18N[TZ[zone]])l=TZ[zone];
+    /* 2: otherwise the language the browser is set to */
+    if(!l){var prefs=navigator.languages||[navigator.language||'en'];for(var i=0;i<prefs.length&&!l;i++){var c=prefs[i].toLowerCase().split('-')[0];if(c==='no'||c==='nn')c='nb';if(I18N[c])l=c}}
+  }
+  /* 3: English when nothing matches */
   setLang(l||'en',false);onScroll()})();
 })();
 </script>
