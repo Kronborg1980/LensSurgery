@@ -148,6 +148,15 @@ ul.ticks li::before{content:"";width:8px;height:8px;border-radius:50%;background
 .flash{animation:flash 2.2s}
 @keyframes flash{0%,60%{background:var(--marigold-soft);box-shadow:0 0 0 8px var(--marigold-soft);border-radius:6px}100%{background:transparent;box-shadow:0 0 0 8px transparent}}
 
+/* photos */
+figure.photo{margin:0 0 18px;border-radius:18px;overflow:hidden;position:relative;background:var(--band);box-shadow:var(--shadow);border:1px solid var(--line)}
+figure.photo img{display:block;width:100%;height:100%;object-fit:cover}
+figure.photo.wide{aspect-ratio:4/3}
+figure.photo.portrait{aspect-ratio:4/5;max-width:340px;border-color:var(--deep-line)}
+figure.photo img{position:absolute;inset:0}
+figure.photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 10px;background:linear-gradient(180deg,transparent,rgba(4,22,26,.78));color:#fff;font-size:.8rem;display:flex;justify-content:space-between;gap:10px;align-items:flex-end}
+figure.photo figcaption b{font-weight:600;font-size:.92rem}
+figure.photo figcaption span{opacity:.8;white-space:nowrap}
 /* videos */
 .vgrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:start}
 .vgrid>div{min-width:0;display:grid;gap:12px}
@@ -243,6 +252,7 @@ footer li{break-inside:avoid;margin-bottom:6px;overflow-wrap:anywhere}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr));padding-bottom:32px}
   .split,.vgrid,.lensbox,.planner{grid-template-columns:minmax(0,1fr);gap:28px}
   main>section{padding-block:48px}
+  .hasphoto{display:contents}.hasphoto figure{order:-1;margin:0}
   .brand span{display:none}
   .searchbox{flex:1 1 auto}
   #results{position:fixed;left:16px;right:16px;top:60px;width:auto}
@@ -345,6 +355,8 @@ footer li{break-inside:avoid;margin-bottom:6px;overflow-wrap:anywhere}
     <h2 data-t="hospital.h"></h2>
     <div class="split">
       <div class="prose" data-each="hospital.p" data-tpl="p"></div>
+      <div class="hasphoto">
+      <figure class="photo wide"><img src="https://vijayanethralaya.com/wp-content/uploads/2023/08/54479_142342262482966_555939_o-4.jpg" data-alt="https://vijayanethralaya.com/wp-content/uploads/2022/12/54479_142342262482966_555939_o-4-991x800.jpg" alt="Vijaya Nethralaya Super Speciality Eye Hospital, Nagarbhavi, Bengaluru" loading="lazy" referrerpolicy="no-referrer"><figcaption><b>Vijaya Nethralaya, Nagarbhavi</b><span>© Vijaya Nethralaya</span></figcaption></figure>
       <dl class="panel">
         <div class="row"><dt data-t="ui.address"></dt><dd>5, 20th Cross, Ring Road underpass, Malagala, Marilingappa Extension, Bengaluru, Karnataka 560091</dd></div>
         <div class="row"><dt data-t="ui.hours"></dt><dd data-t="ui.hoursV"></dd></div>
@@ -352,6 +364,7 @@ footer li{break-inside:avoid;margin-bottom:6px;overflow-wrap:anywhere}
         <div class="row"><dt data-t="ui.website"></dt><dd><a href="https://vijayanethralaya.com/" target="_blank" rel="noopener">vijayanethralaya.com</a></dd></div>
         <div class="row"><dt data-t="ui.map"></dt><dd><a href="https://maps.app.goo.gl/vdUmNU5NZipaqkLr9" target="_blank" rel="noopener" data-t="ui.mapLink"></a></dd></div>
       </dl>
+      </div>
     </div>
     <div class="cards" data-each="hospital.cards" data-tpl="card"></div>
   </div>
@@ -364,7 +377,8 @@ footer li{break-inside:avoid;margin-bottom:6px;overflow-wrap:anywhere}
     <p class="quote" data-t="doctor.quote"></p>
     <div class="split">
       <div class="prose" data-each="doctor.p" data-tpl="p"></div>
-      <div>
+      <div class="hasphoto">
+        <figure class="photo portrait"><img src="https://vijayanethralaya.com/wp-content/uploads/2022/12/DSC_5595-1.jpg" data-alt="https://vijayanethralaya.com/wp-content/uploads/2024/01/Dr-sushruth-sir-800x800.jpg" alt="Dr. Sushruth Appaji Gowda" loading="lazy" referrerpolicy="no-referrer"><figcaption><b>Dr. Sushruth Appaji Gowda</b><span>© Vijaya Nethralaya</span></figcaption></figure>
         <dl class="panel" data-each="doctor.rows" data-tpl="row"></dl>
         <div class="docbtns">
           <a class="btn solid" href="https://kivihealth.com/iam/sushruth.a.14626/bookslot" target="_blank" rel="noopener" data-t="doctor.book"></a>
@@ -663,6 +677,8 @@ function flashText(btn,key,back){btn.textContent=get(key);setTimeout(function(){
 $('#copyBtn').addEventListener('click',function(){var b=this;try{navigator.clipboard.writeText('+917892492098').then(function(){flashText(b,'ui.copied','ui.copy')})}catch(e){var r=document.createRange();r.selectNodeContents($('#mainNum'));var s=getSelection();s.removeAllRanges();s.addRange(r)}});
 $('#shareBtn').addEventListener('click',function(){var b=this,d={title:document.title,url:location.href};if(navigator.share){navigator.share(d).catch(function(){})}else{try{navigator.clipboard.writeText(location.href).then(function(){flashText(b,'ui.shared','ui.share')})}catch(e){}}});
 
+/* photos: try a second address, then hide the frame if neither loads */
+$$('figure.photo img').forEach(function(im){im.addEventListener('error',function(){if(im.dataset.alt){var a=im.dataset.alt;delete im.dataset.alt;im.src=a}else{im.closest('figure').remove()}})});
 /* scroll: progress, active section, back to top */
 var secs=$$('main>section'),bar=$('#bar'),toTop=$('#toTop'),cur='';
 function markNav(){$$('#secnav a').forEach(function(a){var on=a.dataset.k===cur;a.classList.toggle('on',on);if(on){var n=$('#secnav');n.scrollTo({left:a.offsetLeft-n.clientWidth/2+a.clientWidth/2,behavior:'smooth'})}})}
