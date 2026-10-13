@@ -10,7 +10,7 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://kronborg1980.github.io/LensSurgery/">
 <meta property="og:site_name" content="Eye Surgery in India">
-<meta property="og:image" content="https://i.ytimg.com/vi/iNB3SdBncs8/maxresdefault.jpg">
+<meta property="og:image" content="https://i.ytimg.com/vi/iNB3SdBncs8/hqdefault.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Lasse Kronborg">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -49,7 +49,7 @@
       "inLanguage": ["en", "da", "de", "fr", "es", "it", "pt", "nl", "pl", "sv", "nb", "hi"],
       "url": "https://kronborg1980.github.io/LensSurgery/",
       "mainEntityOfPage": "https://kronborg1980.github.io/LensSurgery/",
-      "image": "https://i.ytimg.com/vi/iNB3SdBncs8/maxresdefault.jpg",
+      "image": "https://i.ytimg.com/vi/iNB3SdBncs8/hqdefault.jpg",
       "author": {"@id": "https://kronborg1980.github.io/LensSurgery/#author"},
       "publisher": {"@id": "https://kronborg1980.github.io/LensSurgery/#author"},
       "datePublished": "2026-10-10",
@@ -279,15 +279,15 @@ nav.sec a.on { background: var(--gold); color: #1B1403; }
 .film { min-width: 0; display: grid; gap: 12px; }
 .vid { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #04161A; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.75); border: 1px solid var(--deep-line); }
 .vid iframe, .vid img, .vid .poster { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.vid img { object-fit: cover; }
+.vid img { object-fit: cover; object-position: center; }
 .poster { display: grid; place-items: center; background: none; padding: 0; }
 .poster .art { position: absolute; inset: 0; background: radial-gradient(420px 260px at 70% 20%, #17707B, transparent 70%), linear-gradient(150deg, #0A323A, #061E24); display: grid; place-items: center; }
 .poster .art svg { width: 46%; opacity: 0.5; }
-.poster .shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(4, 22, 26, 0.82)); }
-.poster .play { position: relative; width: 76px; height: 76px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; box-shadow: 0 0 0 10px rgba(242, 179, 58, 0.24); transition: transform 0.2s; }
+.poster .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 22, 26, 0.15) 0%, transparent 40%, rgba(4, 22, 26, 0.85) 100%); }
+.poster .play { position: relative; width: 76px; height: 76px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; box-shadow: 0 0 0 10px rgba(242, 179, 58, 0.24); transition: transform 0.2s; z-index: 2; }
 .poster:hover .play { transform: scale(1.08); }
 .poster .play svg { width: 28px; height: 28px; margin-left: 4px; fill: #1B1403; }
-.poster .cap { position: absolute; left: 16px; right: 16px; bottom: 12px; color: #fff; font-weight: 600; text-align: start; font-size: 0.95rem; line-height: 1.35; }
+.poster .cap { position: absolute; left: 16px; right: 16px; bottom: 12px; color: #fff; font-weight: 600; text-align: start; font-size: 0.95rem; line-height: 1.35; z-index: 2; text-shadow: 0 1px 4px rgba(0,0,0,0.7); }
 .filmcap { color: var(--deep-muted); font-size: 0.9rem; }
 .filmcap a { color: var(--gold); }
 
@@ -568,7 +568,7 @@ footer li { break-inside: avoid; margin-bottom: 6px; overflow-wrap: anywhere; }
       <div class="vid">
         <button class="poster" type="button" data-yt="iNB3SdBncs8" data-attr="aria-label:ui.play" aria-label="Play video">
           <span class="art"><svg viewBox="0 0 300 300"><use href="#spiral"></use></svg></span>
-          <img src="https://i.ytimg.com/vi/iNB3SdBncs8/maxresdefault.jpg" alt="Lasse Kronborg eye surgery journey in Bengaluru" loading="eager" onerror="if(this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/iNB3SdBncs8/hqdefault.jpg';else this.remove()">
+          <img src="https://i.ytimg.com/vi/iNB3SdBncs8/hqdefault.jpg" alt="Lasse Kronborg eye surgery journey in Bengaluru" loading="eager" onload="if(this.naturalWidth<=120)this.remove()" onerror="this.remove()">
           <span class="shade"></span>
           <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span>
           <span class="cap">Life-Changing trip to India for 20/20 Vision! Surgery with Dr. Sushruth Appaji Gowda</span>
@@ -632,9 +632,10 @@ footer li { break-inside: avoid; margin-bottom: 6px; overflow-wrap: anywhere; }
         <div class="vid">
           <button class="poster" type="button" data-yt="iNB3SdBncs8" data-attr="aria-label:ui.play" aria-label="Play video">
             <span class="art"><svg viewBox="0 0 300 300"><use href="#spiral"></use></svg></span>
-            <img src="https://i.ytimg.com/vi/iNB3SdBncs8/maxresdefault.jpg" alt="My eye surgery video" loading="lazy" onerror="if(this.src.indexOf('maxres')>-1)this.src='https://i.ytimg.com/vi/iNB3SdBncs8/hqdefault.jpg';else this.remove()">
+            <img src="https://i.ytimg.com/vi/iNB3SdBncs8/hqdefault.jpg" alt="Life-Changing trip to India for 20/20 Vision! Surgery with Dr. Sushruth Appaji Gowda" loading="lazy" onload="if(this.naturalWidth<=120)this.remove()" onerror="this.remove()">
             <span class="shade"></span>
             <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span>
+            <span class="cap">Life-Changing trip to India for 20/20 Vision! Surgery with Dr. Sushruth Appaji Gowda</span>
           </button>
         </div>
         <p><b>Life-Changing trip to India for 20/20 Vision! Surgery with Dr. Sushruth Appaji Gowda</b><span class="muted"><span data-t="videos.mine">My own film of the journey, the hospital and the surgery.</span> <a href="https://www.youtube.com/watch?v=iNB3SdBncs8" target="_blank" rel="noopener" data-t="ui.openYT">Open on YouTube</a> · <a href="https://www.youtube.com/@Kronborg1980" target="_blank" rel="noopener" data-t="ui.myCh">My channel</a></span></p>
@@ -643,6 +644,7 @@ footer li { break-inside: avoid; margin-bottom: 6px; overflow-wrap: anywhere; }
         <div class="vid">
           <button class="poster" type="button" data-list="UU5YzHB0z3qWvo1TIEoSUy3Q" data-attr="aria-label:ui.playHosp" aria-label="Show the hospital’s videos">
             <span class="art"><svg viewBox="0 0 300 300"><use href="#spiral"></use></svg></span>
+            <img src="https://vijayanethralaya.com/wp-content/uploads/2023/08/54479_142342262482966_555939_o-4.jpg" data-alt="https://vijayanethralaya.com/wp-content/uploads/2022/12/54479_142342262482966_555939_o-4-991x800.jpg" alt="Vijaya Nethralaya YouTube Channel" loading="lazy" referrerpolicy="no-referrer" onerror="if(this.dataset.alt){this.src=this.dataset.alt;delete this.dataset.alt;}else{this.remove();}">
             <span class="shade"></span>
             <span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg></span>
             <span class="cap" data-t="ui.playHosp">Show the hospital’s videos</span>
@@ -1014,12 +1016,6 @@ footer li { break-inside: avoid; margin-bottom: 6px; overflow-wrap: anywhere; }
 </button>
 
 <script>
-/*
- * TIP: If you want all 12 translations bundled offline in this single file,
- * you can paste your original `var I18N = {...};` line right above this comment.
- * Otherwise, this script includes full English & Danish inline and automatically
- * loads the remaining 10 languages from your live GitHub Pages repository.
- */
 var CORE_I18N = {
   "en": {
     "meta": {
